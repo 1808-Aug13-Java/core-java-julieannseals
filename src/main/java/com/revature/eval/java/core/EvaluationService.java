@@ -317,6 +317,7 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
+	//***
 	static class BinarySearch<T> {
 		private List<T> sortedList;
 
@@ -357,9 +358,38 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	//***LAST TEST NOT RESOLVED ON THIS (A SINGLE PHRASE WITH 3 WORDS
+	public String toPigLatin(String string) {		
+		final String vowels = "aeiou";
+        String initialCon = "";
+        int snip = 0;
+       
+        String[] arr = string.split(" ");
+        
+        for(int i = 0; i < arr.length; i++) {       
+	        while (snip < arr[i].length() && !vowels.contains("" + arr[i].charAt(snip)))
+	        {
+	            initialCon += arr[i].charAt(snip);
+	            snip++;
+	        }
+	        if (snip == 0)
+	        {
+	            snip = 0;
+	        }
+	        
+	        arr[i] = arr[i].substring(snip) + initialCon + "ay";
+        }
+        
+        String translated = "";
+        if(arr.length > 1) {
+        	for (int i = 0; i < arr.length; i++) {
+        		translated += arr[i] + " ";
+        	} 
+        }else {
+        	translated = arr[0];
+        }
+	        
+		return translated;
 	}
 
 	/**
@@ -378,9 +408,28 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		int count = 0, x = 0, y = 0, temp;  
+	    temp = input;  
+	    
+	    while(temp != 0) {  
+		   count++;
+		   temp /= 10;
+	    }  
+	    
+	    temp = input;
+	    
+	    while(temp != 0) {
+	    	x = temp % 10;
+	    	y += Math.pow(x, count);
+	    	temp /= 10;
+	    }
+	    
+	    if(input == y) {   	
+	    	return true;
+	    } else    
+	    	return false;
 	}
+
 
 	/**
 	 * 10. Compute the prime factors of a given natural number.
