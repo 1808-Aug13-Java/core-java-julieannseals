@@ -220,9 +220,35 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String arr[] = string.split("\\+|\\(|\\)|-|\\s|\\.");
+		
+		String smsNumber = "";
+		int size = arr.length;
+		int index = 0;		
+		
+		if(arr[0].equals("[ , 1]")) {
+			if(!arr[1].equals("[ , 1]")) {
+				index = 2;
+			} else {
+				index = 1;
+			}
+		} else {
+			index = 0;
+		}
+		for(int i = index; i < size; i++) {
+			smsNumber += arr[i];
+		}
+		
+		if(smsNumber.length() > 11) {
+			throw new IllegalArgumentException();
+		}
+		if(smsNumber.matches(".*[a-zA-Z].*")) {
+			throw new IllegalArgumentException();
+		}
+		
+		return smsNumber;	
 	}
+
 
 	/**
 	 * 6. Given a phrase, count the occurrences of each word in that phrase.
