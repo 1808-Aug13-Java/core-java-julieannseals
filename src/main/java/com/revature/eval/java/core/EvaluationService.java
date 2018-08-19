@@ -260,10 +260,28 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
-	}
+		Map<String, Integer> phrase = new HashMap<String, Integer>();
+		if(string != null) {
 
+			String splitWords[] = string.split("[\\s|\\,\\\n]");
+			
+			for(String word : splitWords) {
+				if(!word.equals("")) {
+					String processed = word.toLowerCase();
+					System.out.println(word);
+					
+					if(phrase.containsKey(processed)) {
+						phrase.put(processed, phrase.get(processed) + 1);
+						
+					} else {
+						phrase.put(processed, 1);
+					}	
+				}
+			}
+		}
+		
+		return phrase;
+	}
 	/**
 	 * 7. Implement a binary search algorithm.
 	 * 
