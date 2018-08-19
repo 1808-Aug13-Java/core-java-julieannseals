@@ -42,9 +42,18 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String string = "";
+		String arr[] = phrase.split("\\-|\\s");
+		int size = arr.length;
+		
+		for(int i = 0; i < size; i++) {
+			char[] array = arr[i].toCharArray();
+			string += Character.toUpperCase(array[0]);
+		}
+
+		return string;
 	}
+
 
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
@@ -96,18 +105,31 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if((sideOne != sideTwo) || sideTwo != sideThree || sideThree != sideOne ) {
+				return false;
+			} else {
+				return true;
+			}
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			
+			if(((sideOne == sideTwo) && (sideTwo != sideThree)) 
+					|| ((sideTwo == sideThree) && (sideThree != sideOne))
+					|| ((sideThree == sideOne) && (sideOne != sideTwo))) {
+				return true;
+			} else {
+				return false; 
+			}
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			
+			if((sideOne != sideTwo) && sideTwo != sideThree && sideThree != sideOne ) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 	}
