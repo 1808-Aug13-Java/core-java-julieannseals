@@ -442,7 +442,7 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
-	//LAST TWO TESTS FAIL BUT I DO NOT KNOW HOW TO ADDRESS THEM
+	//LAST TWO TESTS FAIL BUT I DO NOT KNOW HOW TO ADDRESS THEM ***
 	public List<Long> calculatePrimeFactorsOf(long num) {
 		List<Long> primeFactorList = new ArrayList<Long>();
 	       
@@ -496,6 +496,7 @@ public class EvaluationService {
 	 * gur ynml qbt. ROT13 Gur dhvpx oebja sbk whzcf bire gur ynml qbt. gives The
 	 * quick brown fox jumps over the lazy dog.
 	 */
+	//COME BACK TO ***
 	static class RotationalCipher {
 		private int key;
 
@@ -523,10 +524,28 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public int calculateNthPrime(int nth) {
+		
+		if(nth <= 0) {
+			throw new IllegalArgumentException("You must enter a number greater than 0.");
+		}
+		 int num = 1, count = 0, i;
+		 
+		 while(count < nth) { 
+			 num += 1;
+			 for(i = 2; i < num; i++) {
+				 if(num % i == 0) {
+					 break;
+				 }
+			 }
+			 if(i == num) {
+				 count++;
+			 }
+		 }
+		 
+		 return num;
 	}
+
 
 	/**
 	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
