@@ -757,16 +757,18 @@ public class EvaluationService {
 	 * @param set
 	 * @return
 	 */
-	//FAILS EACH TEST BECAUSE I DIDN'T REMOVE IDENTICAL MULTIPLES
 	public int getSumOfMultiples(int x, int[] set) {
 		int sum = 0, y = 0, total = 0;
+		ArrayList<Integer> multiples = new ArrayList<Integer>();
 		
 		for(int i = 0; i < set.length; i++) {
-			y = x / set[i];
-			sum = y * (y + 1) / 2;
-				total += set[i] * sum;
+			for(int j = 0; j < x; j += set[i]) {
+				if(!multiples.contains(j)) {
+					multiples.add(j);
+					total += j;
+				}
+			}
 		}
-		
 		return total;
 	}
 
