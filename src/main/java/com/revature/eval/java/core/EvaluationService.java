@@ -672,9 +672,30 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		
+		boolean check[] = new boolean [26];
+		
+		int index = 0;
+		
+		String pangram = string.replaceAll("\\s", "");
+
+		for(int i = 0; i < pangram.length(); i++) {
+			if(pangram.charAt(i) <= 'z') {
+				index = pangram.charAt(i) - 'a';
+			}
+			
+			check[index] = true;
+		}
+		
+		for(int i = 0; i < 26; i++) {
+			if(check[i] == false) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
+
 
 	/**
 	 * 17. Calculate the moment when someone has lived for 10^9 seconds.
