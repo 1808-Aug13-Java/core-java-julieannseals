@@ -320,34 +320,28 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	//***NOT COMPLETE AT ALL
+	//***
 	static class BinarySearch<T> {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			/*
-			 * 		private List<T> sortedList;
-
-		public int indexOf(T t) {
-			
+			 				
 			int k = Integer.parseInt(t.toString());
-			int first = 0, last = sortedList.size() - 1, mid;
+			int first = 0, last = sortedList.size(), mid = 0;
 			
-			for(int i = 0; i < sortedList.size(); i++) {
-				mid = (first + last) / 2;
+			while(first <= last) {
+				mid = Math.floorDiv(first + last, 2);
 				if(sortedList.get(mid) == t) {
+					System.out.println("Is at mid immediately: " +mid);
 					return mid;
-				} else if(k < sortedList.get(mid)){
-					
-				} 
+				} else if(k < (int)sortedList.get(mid)) {
+					last = mid - 1;
+				} else  {
+					first = mid + 1;	
+				}
 			}
 			
-			return 0;
-
-			 * 
-			 * 
-			 */
-			return 0;
+			return -1;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -719,7 +713,6 @@ public class EvaluationService {
 		return true;
 	}
 
-//COME BACK TO THIS ***
 	/**
 	 * 17. Calculate the moment when someone has lived for 10^9 seconds.
 	 * 
@@ -758,7 +751,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int x, int[] set) {
-		int sum = 0, y = 0, total = 0;
+		int total = 0;
 		ArrayList<Integer> multiples = new ArrayList<Integer>();
 		
 		for(int i = 0; i < set.length; i++) {
