@@ -1,5 +1,7 @@
 package com.revature.eval.java.core;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -318,12 +320,33 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	//***
+	//***NOT COMPLETE AT ALL
 	static class BinarySearch<T> {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			/*
+			 * 		private List<T> sortedList;
+
+		public int indexOf(T t) {
+			
+			int k = Integer.parseInt(t.toString());
+			int first = 0, last = sortedList.size() - 1, mid;
+			
+			for(int i = 0; i < sortedList.size(); i++) {
+				mid = (first + last) / 2;
+				if(sortedList.get(mid) == t) {
+					return mid;
+				} else if(k < sortedList.get(mid)){
+					
+				} 
+			}
+			
+			return 0;
+
+			 * 
+			 * 
+			 */
 			return 0;
 		}
 
@@ -696,7 +719,7 @@ public class EvaluationService {
 		return true;
 	}
 
-
+//COME BACK TO THIS ***
 	/**
 	 * 17. Calculate the moment when someone has lived for 10^9 seconds.
 	 * 
@@ -706,9 +729,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		String x = given.getClass().getSimpleName();
+		LocalDateTime y = null;
+		
+		if(x.equals("LocalDateTime")) {
+			y = ((LocalDateTime) given).plusSeconds(1000000000);
+		} else if (x.equals("LocalDate")) {
+			y = ((LocalDate) given).atStartOfDay().plusSeconds(1000000000);
+		}
+		
+		return y;
 	}
+
+
 
 	/**
 	 * 18. Given a number, find the sum of all the unique multiples of particular
@@ -723,10 +757,19 @@ public class EvaluationService {
 	 * @param set
 	 * @return
 	 */
-	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	//FAILS EACH TEST BECAUSE I DIDN'T REMOVE IDENTICAL MULTIPLES
+	public int getSumOfMultiples(int x, int[] set) {
+		int sum = 0, y = 0, total = 0;
+		
+		for(int i = 0; i < set.length; i++) {
+			y = x / set[i];
+			sum = y * (y + 1) / 2;
+				total += set[i] * sum;
+		}
+		
+		return total;
 	}
+
 
 	/**
 	 * 19. Given a number determine whether or not it is valid per the Luhn formula.
