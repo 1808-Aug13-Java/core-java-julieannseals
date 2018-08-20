@@ -546,7 +546,7 @@ public class EvaluationService {
 		 return num;
 	}
 
-
+//COME BACK TO 13 AND 14 ***
 	/**
 	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
 	 * system created in the Middle East.
@@ -619,9 +619,44 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		
+		String [] split = string.split("-");
+		String isbn = "";
+		
+		for(int i = 0; i < split.length; i++) {
+			isbn += split[i] + "";
+		}
+
+		if(isbn.length() != 10) {
+			return false;
+		}
+		
+		int sum = 0;
+		
+		for(int i = 0; i < 9; i++) {
+			int num = isbn.charAt(i) - '0';
+		
+			if(num > 9 || num < 0) {
+				return false;
+			}
+			
+			sum += num * (10 - i);
+		}
+		
+		char last = isbn.charAt(9);
+		if(last != 'X' && last > '9' || last < '0') {
+			return false;
+		} 
+		
+		if(last == 'X') {
+			sum += 10;
+		} else {
+			sum += (last - '0');
+		}
+		
+		return sum % 11 == 0;		
 	}
+
 
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
